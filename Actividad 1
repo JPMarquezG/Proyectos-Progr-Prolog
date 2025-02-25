@@ -25,3 +25,44 @@ es_tio_de(A,B):- ( es_padre_de(Z,A), es_padre_de(Z,W), es_padre_de(W,B) ).
 es_tia_de(A,B):- ( es_madre_de(Z,A), es_madre_de(Z,W), es_madre_de(W,B) ).
 es_primo_de(A,B):-( ( es_madre_de(selma,B) , es_padre_de(homero,A)) ; ( es_madre_de(selma,A) , es_padre_de(homero,A)) ).
 es_nieto_de(A,B):- es_padre_de(B,Z), es_padre_de(Z,A).
+
+es_padre_de(abraham, homero).
+es_padre_de(abraham, herbert).
+es_padre_de(clancy, marge).
+es_padre_de(clancy, patty).
+es_padre_de(clancy, selma).
+es_padre_de(homero, bart).
+es_padre_de(homero, lisa).
+es_padre_de(homero, maggie).
+es_madre_de(mona, homero).
+es_madre_de(mona, herbert).
+es_madre_de(jacqueline, marge).
+es_madre_de(jacqueline, patty).
+es_madre_de(jacqueline, selma).
+es_madre_de(marge, bart).
+es_madre_de(marge, lisa).
+es_madre_de(marge, maggie).
+es_madre_de(selma, ling).
+
+% Regla para determinar si X es abuel@ de Y
+es_abuelo_de(X, Y) :-
+    (es_padre_de(X, Z) ; es_madre_de(X,Z)), (es_padre_de(Z, Y); es_madre_de(Z, Y)).
+
+% Regla para determinar si X es hijo de Y
+es_hijo_de(X, Y) :-
+    es_padre_de(Y, X) ; es_madre_de(Y, X).
+
+% Regla para determinar si X es hermano de Y
+es_hermano_de(X, Y) :-
+    (es_hijo_de(X, Z) , es_hijo_de(Y, Z)).
+
+% Regla para determinar si X es ti@ de Y
+es_tio_de(X, Y) :-
+    (es_padre_de(Z, Y) ; es_madre_de(Z, Y)) , es_hermano_de(Z, X).
+
+2. enemigo(corea_del_sur).
+americano(coronel_west).
+vendio_armas(coronel_west, corea_del_sur).
+
+criminal(X) :-
+    americano(X), vendio_armas(X, corea_del_sur), enemigo(corea_del_sur).
