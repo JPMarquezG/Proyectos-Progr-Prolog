@@ -24,7 +24,7 @@ es_abuela_de(A,B):- ( es_madre_de(A,Z), (es_padre_de(Z,B) ; es_madre_de(Z,B) ) )
 es_tio_de(A,B):- ( es_padre_de(Z,A), es_padre_de(Z,W), es_padre_de(W,B) ).
 es_tia_de(A,B):- ( es_madre_de(Z,A), es_madre_de(Z,W), es_madre_de(W,B) ).
 es_primo_de(A,B):-( ( es_madre_de(selma,B) , es_padre_de(homero,A)) ; ( es_madre_de(selma,A) , es_padre_de(homero,A)) ).
-es_nieto_de(A,B):- es_padre_de(B,Z), es_padre_de(Z,A).
+es_nieto_de(A,B):- ( es_padre_de(B,Z); es_madre_de(B,Z)), (es_madre_de(Z,A) ;es_padre_de(Z,A)).
 
 
 
