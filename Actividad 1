@@ -1,3 +1,4 @@
+% Hechos
 
 conecta_con(vancouver,edmonton,16).
 conecta_con(vancouver,calgary,13).
@@ -9,8 +10,22 @@ conecta_con(saskatoon,winnipeg,20).
 conecta_con(regina,saskatoon,7).
 conecta_con(regina,winnipeg,4). 
 
+%preguntas:
+% Existe una conexión entre Saskatoon y Vancouver?
 
-conecta_con(regina,X,Costo).
 
-costo_de_puntoA_a_puntoB_pasando_por_punto_intermedio(Inicio,Final,Costo):- 
-    conecta_con(Inicio , Y, Costo1 ) , conecta_con(Y , Final, Costo2 ), Costo is Costo1+Costo2.
+% Con qué nodos está conectado Regina y cual es el costo de cada conexión?
+       conecta_con(regina,X,Costo).
+
+% Es posible viajar desde Edmonton a Calgary?
+         
+
+% Reglas
+%Construir una regla para determinar si un nodo tiene aristas
+
+
+%Construir una regla para determinar cuál es el costo para ir de un nodo X a un Z pasando por Y.
+
+        costo_de_puntoA_a_puntoB_pasando_por_punto_intermedio(Inicio,Final,Costo):- 
+           conecta_con(Inicio , Y, Costo1 ) , conecta_con(Y , Final, Costo2 ), Costo is Costo1+Costo2.
+
