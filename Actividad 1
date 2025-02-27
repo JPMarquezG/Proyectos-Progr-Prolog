@@ -1,27 +1,16 @@
 
-es_padre_de(homero,bart).
-es_padre_de(homero,lisa).
-es_padre_de(homero,maggie).
-es_padre_de(abraham,homero).
-es_padre_de(abraham,herbert).
-es_padre_de(clancy,patty).
-es_padre_de(clancy,selma).
-es_padre_de(clancy,marge).
-es_madre_de(marge,bart).
-es_madre_de(marge,lisa).
-es_madre_de(marge,maggie).
-es_madre_de(mona,herbert).
-es_madre_de(mona,homero).
-es_madre_de(jacqueline,patty).
-es_madre_de(jacqueline,selma).
-es_madre_de(jacqueline,marge).
-es_madre_de(selma,ling).
+conecta_con(vancouver,edmonton,16).
+conecta_con(vancouver,calgary,13).
+conecta_con(edmonton,saskatoon,12).
+conecta_con(calgary,edmonton,4).
+conecta_con(calgary,regina,14).
+conecta_con(saskatoon,calgary,9).
+conecta_con(saskatoon,winnipeg,20).
+conecta_con(regina,saskatoon,7).
+conecta_con(regina,winnipeg,4). 
 
-es_hermano_de(A,B):- ( es_padre_de(Z,A), es_padre_de(Z,B) ).
-es_hijo_de(A,B):- ( es_padre_de(B,A); es_madre_de(B,A) ).
-es_abuelo_de(A,B):- ( es_padre_de(A,Z), (es_padre_de(Z,B) ; es_madre_de(Z,B) ) ).
-es_abuela_de(A,B):- ( es_madre_de(A,Z), (es_padre_de(Z,B) ; es_madre_de(Z,B) ) ).
-es_tio_de(A,B):- ( es_padre_de(Z,A), es_padre_de(Z,W), es_padre_de(W,B) ).
-es_tia_de(A,B):- ( es_madre_de(Z,A), es_madre_de(Z,W), es_madre_de(W,B) ).
-es_primo_de(A,B):-( ( es_madre_de(selma,B) , es_padre_de(homero,A)) ; ( es_madre_de(selma,A) , es_padre_de(homero,A)) ).
-es_nieto_de(A,B):- es_padre_de(B,Z), es_padre_de(Z,A).
+
+conecta_con(regina,X,Costo).
+
+costo_de_puntoA_a_puntoB_pasando_por_punto_intermedio(Inicio,Final,Costo):- 
+    conecta_con(Inicio , Y, Costo1 ) , conecta_con(Y , Final, Costo2 ), Costo is Costo1+Costo2.
