@@ -7,11 +7,16 @@ es_madre_de(jacqueline, [patty, selma, marge]).
 es_madre_de(selma, [ling]).
 
 
-es_hermano_de(A,B):- ( es_padre_de(Z,A), es_padre_de(Z,B) ).
-es_hijo_de(A,B):- ( es_padre_de(B,A); es_madre_de(B,A) ).
-es_abuelo_de(A,B):- ( es_padre_de(A,Z), (es_padre_de(Z,B) ; es_madre_de(Z,B) ) ).
-es_abuela_de(A,B):- ( es_madre_de(A,Z), (es_padre_de(Z,B) ; es_madre_de(Z,B) ) ).
-es_tio_de(A,B):- ( es_padre_de(Z,A), es_padre_de(Z,W), es_padre_de(W,B) ).
-es_tia_de(A,B):- ( es_madre_de(Z,A), es_madre_de(Z,W), es_madre_de(W,B) ).
-es_primo_de(A,B):-( ( es_madre_de(selma,B) , es_padre_de(homero,A)) ; ( es_madre_de(selma,A) , es_padre_de(homero,A)) ).
-es_nieto_de(A,B):- es_padre_de(B,Z), es_padre_de(Z,A).
+%Regla 1
+
+es_hijo_de(X, Y) :- es_padre_de(Y, Z), member(X, Z);
+                    es_madre_de(Y, Z), member(X, Z) .
+
+%Regla 2
+
+es_nieto_de(X, Y) :- es_hijo_de(X, H), es_hijo_de(H, Y).
+
+%Regla 3
+
+es_primo_de(X, Y) :- (  es_madre_de(marge, H), member(X, H),es_madre_de(selma, [Y]) );
+                     (  es_madre_de(marge, H), member(Y, H),es_madre_de(selma, [X]) ).
