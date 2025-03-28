@@ -20,3 +20,25 @@ es_nieto_de(X, Y) :- es_hijo_de(X, H), es_hijo_de(H, Y).
 
 es_primo_de(X, Y) :- (  es_madre_de(marge, H), member(X, H),es_madre_de(selma, [Y]) );
                      (  es_madre_de(marge, H), member(Y, H),es_madre_de(selma, [X]) ).
+
+
+%Regla 4
+
+es_hermano_de(X, Y) :-  (es_madre_de(_, H), member(X, H), member(Y, H), X \= Y),!.
+
+
+
+%Regla 5
+
+es_hermano_de(X, Y) :- es_padre_de(P, HijoX), es_padre_de(P, HijoY), 
+                       member(X, HijoX), member(Y, HijoY), X \= Y.    
+
+es_tio_de(X, Y) :-
+    (es_padre_de(P, H), member(Y, H), es_hermano_de(X, P));
+    (es_madre_de(M, H), member(Y, H), es_hermano_de(X, M)).
+
+%regla 6
+
+es_abuelo_de(X, Y) :-
+(es_padre_de(X, H), member(Z, H), ( es_padre_de(Z, H2), member(Y, H2); es_madre_de(Z, H2), member(Y, H2) ) );
+(es_madre_de(X, H), member(Z, H), ( es_padre_de(Z, H2), member(Y, H2); es_madre_de(Z, H2), member(Y, H2) ) ).
