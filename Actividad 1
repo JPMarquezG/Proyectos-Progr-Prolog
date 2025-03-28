@@ -1,21 +1,11 @@
+es_padre_de(homer, [bart, lisa, maggie]).
+es_padre_de(abraham, [homer, herbert]).
+es_padre_de(clancy, [patty, selma, marge]).
+es_madre_de(marge, [bart, lisa, maggie]).
+es_madre_de(mona, [herbert, homer]).
+es_madre_de(jacqueline, [patty, selma, marge]).
+es_madre_de(selma, [ling]).
 
-es_padre_de(homero,bart).
-es_padre_de(homero,lisa).
-es_padre_de(homero,maggie).
-es_padre_de(abraham,homero).
-es_padre_de(abraham,herbert).
-es_padre_de(clancy,patty).
-es_padre_de(clancy,selma).
-es_padre_de(clancy,marge).
-es_madre_de(marge,bart).
-es_madre_de(marge,lisa).
-es_madre_de(marge,maggie).
-es_madre_de(mona,herbert).
-es_madre_de(mona,homero).
-es_madre_de(jacqueline,patty).
-es_madre_de(jacqueline,selma).
-es_madre_de(jacqueline,marge).
-es_madre_de(selma,ling).
 
 es_hermano_de(A,B):- ( es_padre_de(Z,A), es_padre_de(Z,B) ).
 es_hijo_de(A,B):- ( es_padre_de(B,A); es_madre_de(B,A) ).
